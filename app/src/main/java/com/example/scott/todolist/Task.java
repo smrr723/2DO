@@ -32,12 +32,10 @@ public class Task {
         this.description = description;
         this.completeStatus = 0;
     }
-    public Task(Integer id, String name, String description, Integer completeStatus) {
-        this.id = id;
+    public Task(String name, String description, Integer completeStatus) {
         this.name = name;
         this.description = description;
         this.completeStatus = 0;
-
     }
 
 //    CRUD Methods/Functions
