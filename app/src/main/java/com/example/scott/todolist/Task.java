@@ -1,18 +1,5 @@
 package com.example.scott.todolist;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import static com.example.scott.todolist.DBHelper.TASKS_COLUMN_CATEGORY;
-import static com.example.scott.todolist.DBHelper.TASKS_COLUMN_DESCRIPTION;
-import static com.example.scott.todolist.DBHelper.TASKS_COLUMN_ID;
-import static com.example.scott.todolist.DBHelper.TASKS_COLUMN_NAME;
-import static com.example.scott.todolist.DBHelper.TASKS_COLUMN_STATUS;
-import static com.example.scott.todolist.DBHelper.TASKS_TABLE_NAME;
 
 /**
  * Created by scott on 12/11/2017.
