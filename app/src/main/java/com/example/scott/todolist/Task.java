@@ -21,22 +21,30 @@ import static com.example.scott.todolist.DBHelper.TASKS_TABLE_NAME;
 public class Task {
     private Integer id;
     private String name;
-    private String category;
+    private Category category;
     private String description;
     private Integer completeStatus;
+    private String priority;
+    private String dateDue;
 
 
-    public Task(Integer id, String name, String category, String description, Integer completeStatus) {
+    public Task(Integer id, String name, Category category, String description, Integer completeStatus, String priority, String dateDue) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.description = description;
-        this.completeStatus = 0;
+        this.completeStatus = completeStatus;
+        this.priority = priority;
+        this.dateDue = dateDue;
     }
-    public Task(String name, String description, Integer completeStatus) {
+
+    public Task(String name, String description, Category category, String priority, String dateDue) {
         this.name = name;
         this.description = description;
+        this.category = category;
         this.completeStatus = 0;
+        this.priority = priority;
+        this.dateDue = dateDue;
     }
 
 //    CRUD Methods/Functions
@@ -49,7 +57,7 @@ public class Task {
         return name;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -65,42 +73,20 @@ public class Task {
         this.completeStatus = completeStatus;
     }
 
-    public static ArrayList<Task> all(DBHelper dbHelper){
-        ArrayList<Task> tasks = new ArrayList<>();
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TASKS_TABLE_NAME, null);
-        cursor.moveToFirst();
-        while(cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex(TASKS_COLUMN_ID));
-            String name = cursor.getString(cursor.getColumnIndex(TASKS_COLUMN_NAME));
-            String category = cursor.getString(cursor.getColumnIndex(TASKS_COLUMN_CATEGORY));
-            String description = cursor.getString(cursor.getColumnIndex(TASKS_COLUMN_DESCRIPTION));
-            Integer completeStatus = cursor.getInt(cursor.getColumnIndex(TASKS_COLUMN_STATUS));
-            Task task = new Task(id, name, category, description, completeStatus);
-            tasks.add(task);
-        }
-        cursor.close();
-        return tasks;
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
-    public boolean save(DBHelper dbHelper){
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(TASKS_COLUMN_NAME, this.name);
-        cv.put(TASKS_COLUMN_CATEGORY, this.category);
-        cv.put(TASKS_COLUMN_DESCRIPTION, this.description);
-        cv.put(TASKS_COLUMN_STATUS, this.completeStatus);
-
-        return true;
+    public String getPriority() {
+        return priority;
     }
 
-    public static boolean delete(DBHelper dbHelper, Integer id){
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String selection = " id = ?";
-        String[] values = {id.toString()};
-        db.delete(TASKS_TABLE_NAME, selection, values);
-        return true;
+    public void setDateDue(String dateDue) {
+        this.dateDue = dateDue;
     }
 
+    public String getDateDue() {
+        return dateDue;
+    }
 }
 

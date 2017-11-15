@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".CategoryActivity" />
         <activity android:name=".NewTaskActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".TaskDetailsActivity"></activity>
     </application>
 
 </manifest>
