@@ -10,7 +10,6 @@ import org.w3c.dom.Text;
 
 public class ToDoListActivity extends MyMenu {
 
-//    private static int SPLASH_TIME_OUT = 4000;
 
     private TextView allTaskQty;
 
@@ -18,17 +17,7 @@ public class ToDoListActivity extends MyMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
-//        allTaskQty = (TextView)findViewById(R.id.all_task_qty);
-//        allTaskQty.setText(); SET ALL TASKS QTY ON HOMEPAGE.
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent homeIntent = new Intent(ToDoListActivity.this, HomeActivity.class);
-//                startActivity(homeIntent);
-//                finish();
-//            }
-//        }, SPLASH_TIME_OUT);
     }
 
 
