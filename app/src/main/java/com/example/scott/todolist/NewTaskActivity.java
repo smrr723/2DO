@@ -26,6 +26,8 @@ public class NewTaskActivity extends AppCompatActivity {
     Spinner prioritySpinner;
     EditText descriptionText;
     DBHelper dbHelper;
+    Integer updateId;
+    Integer completeStatus;
 
     Button addTaskButton;
     EditText dateDueTextView;
@@ -65,14 +67,45 @@ public class NewTaskActivity extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+        Bundle extras = getIntent().getExtras();
+        if (null != extras) {
+            nameText.setText(extras.getString(TaskDetailsActivity.TASK_NAME));
+            descriptionText.setText(extras.getString(TaskDetailsActivity.TASK_DESC));
+            updateId = extras.getInt(TaskDetailsActivity.TASK_ID);
+            completeStatus = extras.getInt(TaskDetailsActivity.TASK_COMPLETED);
+            // myCalendar.setTime(Da);
+            // prioritySpinner.setSelection(getResources().getStringArray());
+            updateLabel();
+            addTaskButton.setText(getString(R.string.update));
+
+        }
 
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addTask();
+                if (getIntent().getExtras() == null)
+                    addTask();
+                else
+                    editTask();
             }
         });
         loadCategories();
+    }
+
+    public void editTask() {
+        String name = nameText.getText().toString();
+        String description = descriptionText.getText().toString();
+        Category category = (Category) categoryText.getSelectedItem();
+        String priprity = prioritySpinner.getSelectedItem().toString();
+        String dateDue = dateDueTextView.getText().toString();
+        if (category == null) {
+            Toast.makeText(this, "Please select task category", Toast.LENGTH_LONG).show();
+            return;
+        }
+        Task task = new Task(updateId, name, category, description, completeStatus, priprity, dateDue);
+        dbHelper.updateTask(task);
+        setResult(RESULT_OK);
+        finishActivity(TaskDetailsActivity.REQUEST_CODE_EDIT);
     }
 
     public void addTask() {
@@ -95,6 +128,9 @@ public class NewTaskActivity extends AppCompatActivity {
         ArrayAdapter<Category> categoryArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         categoryArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoryText.setAdapter(categoryArrayAdapter);
+        if (getIntent().getExtras() != null) {
+            categoryText.setSelection(categories.indexOf(getIntent().getExtras().getString(TaskDetailsActivity.TASK_CATEGORY)));
+        }
     }
 
     private void updateLabel() {

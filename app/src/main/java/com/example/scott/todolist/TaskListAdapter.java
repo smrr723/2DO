@@ -55,6 +55,14 @@ public class TaskListAdapter extends BaseAdapter {
         TextView taskName = (TextView) v.findViewById(R.id.taskName);
         TextView taskDescription = (TextView) v.findViewById(R.id.taskDescription);
         TextView dateDue = (TextView) v.findViewById(R.id.dateDue);
+        v.findViewById(R.id.ib_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.delete(task.getId());
+                tasks.remove(i);
+                notifyDataSetChanged();
+            }
+        });
         final CheckBox checkBox = (CheckBox) v.findViewById(R.id.isCompleted);
         taskName.setText(task.getName());
         taskDescription.setText(task.getDescription());

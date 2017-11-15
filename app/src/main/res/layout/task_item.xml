@@ -59,4 +59,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskDescription" />
+
+    <ImageButton
+        android:id="@+id/ib_delete"
+        android:layout_width="40dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete"
+        app:layout_constraintHorizontal_bias="0.826" />
+
 </android.support.constraint.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -71,6 +72,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public synchronized void updateTask(Task task) {
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TASKS_COLUMN_NAME, task.getName());
+        contentValues.put(TASKS_COLUMN_DESCRIPTION, task.getDescription());
+        contentValues.put(TASKS_COLUMN_CATEGORY, task.getCategory().getId());
+        contentValues.put(TASKS_COLUMN_STATUS, task.getCompleteStatus());
+        contentValues.put(TASKS_COLUMN_PRIORITY, task.getPriority());
+        contentValues.put(TASKS_COLUMN_DATE_DUE, task.getDateDue());
+        Log.d("Update", "Update Item " + task.getId());
+        database.update(TASKS_TABLE_NAME, contentValues, "id=?", new String[]{task.getId().toString()});
+        database.close();
+    }
     public synchronized Task getTaskById(Integer taskId) {
         String query = "SELECT * FROM " + TASKS_TABLE_NAME + " WHERE id=" + taskId;
         SQLiteDatabase database = getReadableDatabase();
@@ -201,6 +215,15 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(TASKS_COLUMN_STATUS, isCompleted);
         int didUpdate = db.update(TASKS_TABLE_NAME, contentValues, "id=?", new String[]{taskId.toString()});
         db.close();
+    }
+
+    public boolean delete(Integer id) {
+        SQLiteDatabase db = getWritableDatabase();
+        String selection = "id=?";
+        Log.d("Delete", "Delete Item " + id);
+        String[] values = {id.toString()};
+        db.delete(TASKS_TABLE_NAME, selection, values);
+        return true;
     }
 }
 

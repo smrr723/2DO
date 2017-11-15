@@ -1,13 +1,23 @@
 package com.example.scott.todolist;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class TaskDetailsActivity extends AppCompatActivity {
 
-        private DBHelper dbHelper;
+    public static final String TASK_NAME = "task_name";
+    public static final String TASK_PRIORITY = "task_priority";
+    public static final String TASK_DESC = "task_desc";
+    public static final String TASK_DUE_DATE = "due_date";
+    public static final String TASK_CATEGORY = "category";
+    public static final String TASK_COMPLETED = "completed";
+    public static final String TASK_ID = "task_id";
+    public static final int REQUEST_CODE_EDIT = 1;
+    private DBHelper dbHelper;
 
         private TextView taskName;
         private TextView taskDescription;
@@ -31,7 +41,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
             taskCompleted = (TextView) findViewById(R.id.taskCompleted);
             if (getIntent() != null) {
                 Integer taskId = getIntent().getIntExtra("TaskId", 0);
-                Task task = dbHelper.getTaskById(taskId);
+                final Task task = dbHelper.getTaskById(taskId);
                 getSupportActionBar().setTitle(task.getName());
                 taskName.setText(task.getName());
                 taskDescription.setText(task.getDescription());
@@ -39,6 +49,20 @@ public class TaskDetailsActivity extends AppCompatActivity {
                 taskDueDate.setText(task.getDateDue());
                 taskCategory.setText(task.getCategory().toString());
                 taskCompleted.setText(task.getCompleteStatus() == 1 ? "Completed" : "TODO");
+                findViewById(R.id.btn_edit_todo).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i =  new Intent(TaskDetailsActivity.this, NewTaskActivity.class);
+                        i.putExtra(TASK_NAME, task.getName());
+                        i.putExtra(TASK_DESC, task.getDescription());
+                        i.putExtra(TASK_PRIORITY, task.getPriority());
+                        i.putExtra(TASK_DUE_DATE, task.getDateDue());
+                        i.putExtra(TASK_CATEGORY, task.getCategory().toString());
+                        i.putExtra(TASK_COMPLETED, task.getCompleteStatus());
+                        i.putExtra(TASK_ID, task.getId());
+                        startActivityForResult(i, REQUEST_CODE_EDIT);
+                    }
+                });
             }
         }
     @Override
@@ -49,5 +73,12 @@ public class TaskDetailsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    }
+
+//    @Override
+//    public void onAcitivityResult(int requestCode, int resultCode,  Intent data) {
+//        if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
+//            finish();
+//        }
+//    }
+}
 

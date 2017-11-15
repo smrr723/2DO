@@ -26,4 +26,9 @@ public class Category {
     public String toString() {
         return getName();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj.toString().equalsIgnoreCase(getName());
+    }
 }

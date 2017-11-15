@@ -30,7 +30,7 @@ public class CategoryActivity extends AppCompatActivity {
             if (category == null) {
                 getSupportActionBar().setTitle("All tasks");
             } else {
-                getSupportActionBar().setTitle("Category: " + category.getName());
+                getSupportActionBar().setTitle(category.getName());
             }
             TaskListAdapter taskListAdapter = new TaskListAdapter(this, dbHelper.getTasksByCategory(categoryId), dbHelper);
             listView.setAdapter(taskListAdapter);
