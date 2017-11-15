@@ -54,11 +54,15 @@ public class ToDoListActivity extends MyMenu {
         });
     }
 
+//    updates task counts for use on homepage
+
     private void reloadCounts() {
         categoryAdapter.notifyDataSetChanged();
         totalTaskss.setText(dbHelper.getCountByCategory(null).toString());
         completedTasks.setText(dbHelper.getCountOfCompletedTasks().toString());
     }
+
+//    Uses built in onResume method, with reloadCounts, to refresh task quantities on homepage.
 
     @Override
     protected void onResume() {

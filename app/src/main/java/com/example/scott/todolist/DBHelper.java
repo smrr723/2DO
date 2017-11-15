@@ -108,9 +108,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return null;
     }
+//        Probably won't make a different with this app, but synchronized used to avoid crashing from memory consistency issues
+//        because SQLite doesn't support multi-threading (basically doing to things at once(?)), so synch methods makes them go in sequence.
 
     public synchronized Long getCountByCategory(Integer categoryId) {
         SQLiteDatabase db = getReadableDatabase();
+
+//        Using LONG below, using OL, because queryNumEntries won't accept Integers.
+
         Long count = 0L;
         if (categoryId == null) {
             count = DatabaseUtils.queryNumEntries(db, TASKS_TABLE_NAME);
