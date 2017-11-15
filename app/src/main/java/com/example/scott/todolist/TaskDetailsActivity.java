@@ -6,8 +6,6 @@ import android.widget.TextView;
 
 public class TaskDetailsActivity extends AppCompatActivity {
 
-
-    public class TaskDetailsActivity extends AppCompatActivity {
         private DBHelper dbHelper;
 
         private TextView taskName;

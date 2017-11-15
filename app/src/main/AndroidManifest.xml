@@ -12,16 +12,20 @@
         android:theme="@style/AppTheme">
 
         <!-- <meta-data tools:replace="android:value" /> -->
-        <activity android:name=".ToDoListActivity">
+        <activity
+            android:name=".ToDoListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".NewTaskActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".NewTaskActivity" />
-        <activity android:name=".HomeActivity" />
         <activity android:name=".TaskDetailsActivity"></activity>
     </application>
 
