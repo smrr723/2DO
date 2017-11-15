@@ -19,7 +19,7 @@ public class MyMenu extends AppCompatActivity {
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item){
-        if(item.getItemId() == R.id.addTask){
+        if(item.getItemId() == R.id.add_task){
             Intent intent = new Intent(this, NewTaskActivity.class);
             startActivity(intent);
             return true;

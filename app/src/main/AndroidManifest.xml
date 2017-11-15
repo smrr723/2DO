@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<meta-data tools:replace="android:value" />-->
+
+        <!-- <meta-data tools:replace="android:value" /> -->
         <activity android:name=".ToDoListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +21,7 @@
         </activity>
         <activity android:name=".CategoryActivity" />
         <activity android:name=".NewTaskActivity" />
-
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>

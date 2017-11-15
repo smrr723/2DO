@@ -25,6 +25,7 @@ public class Task {
     private String description;
     private Integer completeStatus;
 
+
     public Task(Integer id, String name, String category, String description, Integer completeStatus) {
         this.id = id;
         this.name = name;
@@ -89,6 +90,7 @@ public class Task {
         cv.put(TASKS_COLUMN_CATEGORY, this.category);
         cv.put(TASKS_COLUMN_DESCRIPTION, this.description);
         cv.put(TASKS_COLUMN_STATUS, this.completeStatus);
+
         return true;
     }
 

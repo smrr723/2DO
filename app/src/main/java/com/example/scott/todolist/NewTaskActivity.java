@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class NewTaskActivity extends AppCompatActivity {
 
@@ -34,5 +35,6 @@ public class NewTaskActivity extends AppCompatActivity {
         task.save(dbHelper);
         Intent intent = new Intent(this, ToDoListActivity.class);
         startActivity(intent);
+
     }
 }
