@@ -15,6 +15,7 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+//        for back button, getActionBar causes crashing for some reason
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dbHelper = new DBHelper(this);
         listView = (ListView) findViewById(R.id.taskList);
@@ -36,6 +37,7 @@ public class CategoryActivity extends AppCompatActivity {
 
         }
     }
+//    function for back button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){

@@ -30,17 +30,17 @@ public class CategoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return categoies.get(i);
+    public Object getItem(int position) {
+        return categoies.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         View v = view;
         if (v == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
@@ -49,7 +49,7 @@ public class CategoryAdapter extends BaseAdapter {
         TextView categoryName = v.findViewById(R.id.categoryName);
         TextView categoryCount = v.findViewById(R.id.qty);
 
-        Category category = categoies.get(i);
+        Category category = categoies.get(position);
         categoryName.setText(category.getName());
         Long count = dbHelper.getCountByCategory(category.getId());
         if (count != null)
