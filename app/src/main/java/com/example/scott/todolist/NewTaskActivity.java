@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -73,20 +75,25 @@ public class NewTaskActivity extends AppCompatActivity {
             descriptionText.setText(extras.getString(TaskDetailsActivity.TASK_DESC));
             updateId = extras.getInt(TaskDetailsActivity.TASK_ID);
             completeStatus = extras.getInt(TaskDetailsActivity.TASK_COMPLETED);
+            Log.d("hey", extras.getString(TaskDetailsActivity.TASK_DUE_DATE));
             // myCalendar.setTime(Da);
             // prioritySpinner.setSelection(getResources().getStringArray());
-            updateLabel();
-            addTaskButton.setText(getString(R.string.update));
 
+            String myFormat = "dd/MM/yy"; //In which you need put here
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+            dateDueTextView.setText(extras.getString(TaskDetailsActivity.TASK_DUE_DATE));
+            addTaskButton.setText(getString(R.string.update));
+            addTaskButton.setTextSize(20f);
         }
 
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (getIntent().getExtras() == null)
+                if (getIntent().getExtras() == null) {
                     addTask();
-                else
+                } else {
                     editTask();
+                }
             }
         });
         loadCategories();
@@ -105,7 +112,7 @@ public class NewTaskActivity extends AppCompatActivity {
         Task task = new Task(updateId, name, category, description, completeStatus, priprity, dateDue);
         dbHelper.updateTask(task);
         setResult(RESULT_OK);
-        finishActivity(TaskDetailsActivity.REQUEST_CODE_EDIT);
+        finish();
     }
 
     public void addTask() {

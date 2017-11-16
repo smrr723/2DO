@@ -10,6 +10,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     private DBHelper dbHelper;
     ListView listView;
+    Integer categoryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class CategoryActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
 
-            Integer categoryId = intent.getIntExtra("Category", 0);
+            categoryId = intent.getIntExtra("Category", 0);
             if (categoryId == 0) {
                 categoryId = null;
             }
@@ -32,12 +33,10 @@ public class CategoryActivity extends AppCompatActivity {
             } else {
                 getSupportActionBar().setTitle(category.getName());
             }
-            TaskListAdapter taskListAdapter = new TaskListAdapter(this, dbHelper.getTasksByCategory(categoryId), dbHelper);
-            listView.setAdapter(taskListAdapter);
 
         }
     }
-//    function for back button
+    //    function for back button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
@@ -45,5 +44,12 @@ public class CategoryActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        TaskListAdapter taskListAdapter = new TaskListAdapter(this, dbHelper.getTasksByCategory(categoryId), dbHelper);
+        listView.setAdapter(taskListAdapter);
     }
 }

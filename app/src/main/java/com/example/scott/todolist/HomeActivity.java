@@ -20,6 +20,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ToDoListActivity.class));
                 finish();
             }
-        }, 2000);
+        }, 3000);
     }
 }
