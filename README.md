@@ -6,10 +6,10 @@ To Do List App made with CRUD functionality using Java, XML, SQLite and TDD in A
 
 - Java fundamentals
 - Android Studio
-- Data persistance 
+- Data persistence 
 - TDD
 - OOP
-- Databases with CRUD actions
+- Databases (SQL) with CRUD actions
 
 ### MVP
 Create an app which will allow the user to maintain a task list. The user should be able to enter tasks and display them in a list. The list should only show the bare details of each task. Selecting a task from the list should bring up another screen which shows full details of the task. Users should also be able to mark tasks as completed.
