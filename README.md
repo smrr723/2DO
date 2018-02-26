@@ -2,7 +2,7 @@
 To Do List App made with CRUD functionality using Java, XML, SQLite and TDD in Android Studio.
 
 ### Overview
-2DO was a week long Java project undertaken to consolidate and practice everything learned during weeks 5 & 8 of the [CodeClan](https://codeclan.com/) intensive Software Development course, including the following:
+2DO was a week long Java project undertaken to practice, and consolidate learning of the following topics:
 
 - Java fundamentals
 - Android Studio
